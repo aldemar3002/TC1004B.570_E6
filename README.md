@@ -9,11 +9,12 @@ Mariam Landa Bautista A01736672
 
 Josué Aldemar Garduño Gómez A01733320
 
-En este repositorio se encuentra el el material utilizado para resolver del reto de TC1004B IoT, con el ESP32 utilizando el IDE de Arduino, 
+En este repositorio se encuentra el el material utilizado para resolver del reto de TC1004B IoT con el ESP32, utilizando el IDE de Arduino. 
 
-por lo cuál es importante que antes de revisar el contenido tengas instalado el software en tu computadora, el cuál puedes descargar en el siguiente enlace: https://www.arduino.cc/en/main/software es muy importante que instales el software dependiendo de tu sistema operativo.
+Es fundamental que, previo a la revisión del contenido, hayas instalado el software en tu computadora. Puedes descargarlo desde el siguiente enlace: https://www.arduino.cc/en/main/software. Es sumamente importante que instales el software acorde a tu sistema operativo.
 
-En este Repositorio, está incluido todos los elementos utilzados para la resolución del reto, como códigos, conexiones y bloques de AppInventor Si quieres conocer más sobre el desarrollo del reto visita la wiki.
+En este repositorio se incluyen todos los elementos utilizados para resolver el desafío, tales como códigos, conexiones y bloques de AppInventor. 
+Si deseas obtener más información acerca del desarrollo del reto, te invitamos a visitar la wiki.
 
 
 
