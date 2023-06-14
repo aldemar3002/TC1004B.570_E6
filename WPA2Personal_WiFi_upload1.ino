@@ -5,15 +5,12 @@
 #include "Arduino.h"
 #include "addons/RTDBHelper.h"
 #include "DHT.h"
+#include <Wire.h>
+#include <MPU6050.h>
 
 
-#define FLAMA_PIN 17   // Pin input para el puerto DO . Sensor flama
-#define S_MOV_PIN 19    // Pin input para el acelerometro
+#define FLAMA_PIN 17   // Pin input para el puerto DO . Sensor flama  
 #define DHTPIN 15 
-
-
-int MIC = 34; //El pin que detecta el microfono       //Variables para el sensor de sonido KY-038
-int sonido ; //Variable en la que se guarda la señal
 
 
 // Se define el tipo de sensor a utilizar
@@ -21,8 +18,9 @@ int sonido ; //Variable en la que se guarda la señal
 DHT dht(DHTPIN, DHTTYPE);
 
 
-
 //Variables
+int MIC = 34; //El pin que detecta el microfono       //Variables para el sensor de sonido KY-038
+int sonido ; //Variable en la que se guarda la señal
 int isFlame = HIGH;             // Sensor flama. HIGH significa NO FLAME
 bool flama;
 bool movimiento;                //Sensor sonido
@@ -32,6 +30,17 @@ float t;                        //Sensor DHT
 float f;                        //Sensor DHT
 String numero;                  //Numero de Firebase /App_Inventor/numero
 int num;
+
+MPU6050 mpu;
+int16_t accX, accY, accZ;
+
+// Pin input para el acelerometro
+Wire.begin(21, 22); // Inicializar la comunicación I2C en los pines 21 (SDA) y 22 (SCL) del ESP32
+mpu.initialize();
+  
+  // Configurar el acelerómetro con los parámetros deseados
+mpu.setAccelerometerRange(MPU6050_ACCEL_FS_2);
+
 
 // Credenciales para conectarse a la red bajo protocolo WPA2-Personal
 const char* ssid = "HUAWEIY5p";
@@ -129,9 +138,24 @@ void sensorSonido(){
 }
 
 
-
 void sensorMovimiento(){
-  movimiento=false;
+    // Leer los valores de aceleración en los ejes X, Y y Z
+  mpu.getAcceleration(&accX, &accY, &accZ);
+  
+  // Calcular la magnitud de la aceleración
+  float magnitud = sqrt(pow(accX, 2) + pow(accY, 2) + pow(accZ, 2));
+  
+  // Definir un umbral de movimiento para detectar el movimiento
+  float umbralMovimiento = 1000.0; // Ajusta este valor según tus necesidades
+  
+    // Verificar si se ha superado el umbral de movimiento
+  if (magnitud > umbralMovimiento) {
+    // Se ha detectado movimiento
+    movimiento=true;
+  }
+  else{
+    movimiento=false;
+  }
 }
 
 void loop() {
