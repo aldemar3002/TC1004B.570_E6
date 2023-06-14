@@ -42,11 +42,8 @@ for item in info.each(): #imprime para cada elemento en App_Inventor
         print(f' {item.key()} = {item.val()}°F')
     elif("humedad" == item.key()): #nivel de humedad 
         print(f' {item.key()} = {item.val()}%')
-    elif("sonido" == item.key()): #booleano de presencia de sonido ambiental
-        if(item.val()==False):
-            print(" No hay ruidos aparentes")
-        else:
-            print(" Se escuchó algo")
+    elif("sonido" == item.key()): #Frecuencia de sonido detectado
+        print(f' {item.key()} = {item.val()}Hz')
     elif("flama" == item.key()): #booleano de presencia de flama
         if(item.val()==False):
             print(" No hay presencia de flama")
